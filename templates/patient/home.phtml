@@ -1,0 +1,194 @@
+<div class="top">
+  <div class="top-content">
+    <h1>Bienvenue sur Equi'Lib     
+      <?php if((new App\Services\PatientSession)->getPatient()): ?>
+        <?=(new App\Services\PatientSession)->getPatient()->getFirstname()?> 
+        <?=(new App\Services\PatientSession)->getPatient()->getLastname()?> 
+      <?php endif ?>
+    </h1>
+      <h2>Le premier site qui vous met en relation <br>
+         avec les vétérinaires équins</h2>
+  </div>
+  <div class="suggestion">
+  <form method="post" class="d-flex">
+    <select id="speciality" name="speciality" class="mx-2">
+    <option value="" disabled selected hidden>Choisir une spécialité</option>
+      <?php
+        foreach($specialities as $speciality){
+          echo '<option value="' . $speciality['id'] . '">' . $speciality['name'] . '</option>';
+        }
+      ?>
+    </select>
+    <div class="d-flex flex-grow-1">
+      <input id="code" placeholder="Code postal" class="flex-grow-1 mx-2">
+      <input id="ville" placeholder="Ville" name="city" class="flex-grow-1 mx-2">
+    </div>
+    
+    <button type="submit" class="mx-2">Rechercher</button>
+  </form>
+  <!-- CITY LIST -->
+  <div class="list-city">
+  <div class="vicopo-wrapper">
+      <ul class="vicopo-dropdown"
+        data-vicopo="#ville, #code" data-toggle="dropdown"
+        data-vicopo-click='{"#code": "code", "#ville": "ville"}'>
+        <li>
+          <strong data-vicopo-code-postal></strong>
+          <span data-vicopo-ville></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  <ul class="veterinary-list">
+      <?php if(isset($_POST['speciality']) || isset($_POST['city'])){
+          // Definir que $veterinaries est un tableau car count a besoin d'un tableau pour rechercher
+            if (is_array($veterinaries)) {
+          // Compte dans le tableau vétérinaires
+            if(count($veterinaries) > 0){
+                  foreach($veterinaries as $veterinary){ ?>
+                    <li class="veterinary-card">
+                      <h2><?= $veterinary['firstname'] . ' ' . $veterinary['lastname']; ?></h2>
+                      <p><?= $veterinary['speciality_name']; ?></p>
+                      <button type="submit" class="btn btn-primary btn-lg btn-block"><a href="<?=constructUrl('appointmentPatient',['id'=>$veterinary['id_professionnal']]);?>">Prendre rendez-vous</a></button>
+                    </li>
+                  <?php } 
+            } else {
+              // Retourner un message si aucun vétérinaire n'est associé à la spécialité sélectionnée
+              echo 'Aucun vétérinaire n\'est affecté à cette spécialité.';
+            }
+        } else {
+          echo $veterinaries;
+        }
+      }
+      ?>
+  </ul>
+</div>
+
+<div class="presentation">
+  <div class="card">
+    <div class="content 1">
+      <img src="<?=asset('assets/icons/doctor.png');?>" alt="doctor">
+      <h4>Trouvez un vétérinaire <br> pour votre cheval</h4>
+    </div>
+    <div class="content 2">
+      <img src="<?=asset('assets/icons/rendez-vous.png');?>" alt="appointment">
+      <h4>Prenez un rendez-vous</h4>
+    </div>
+    <div class="content 3">
+      <img src="<?=asset('assets/icons/stopwatch.png');?>" alt="stopwatch">
+      <h4>Attendre le vétérinaire <br> chez vous</h4>
+    </div>
+  </div>
+</div>
+
+
+<div class="speciality">
+  <img src="<?=asset('assets/horse.jpg');?>" alt="horse" class="horse">
+  
+  <div class="speciality-box">
+  <h2>Trouvez un vétérinaire en <br> fonction des besoins de votre cheval</h2>
+      <div class="speciality-content content-1">
+        <div class="speciality-card">
+            <img src="<?=asset('assets/icons/os.png');?>" alt="os">
+              <h5>Pathologie locomotrice</h5>
+               <p>(muscles et squelette)</p>
+        </div>
+            <div class="speciality-card">
+                <img src="<?=asset('assets/icons/heart.png');?>" alt="heart">
+                  <h5>Médecine interne</h5>
+                    <p>(appareil respiratoire, cœur…)</p>
+            </div>
+                <div class="speciality-card">
+                    <img src="<?=asset('assets/icons/virus.png');?>" alt="virus">
+                      <h5>Pathologie infectieuse</h5>
+                        <p>(maladies dues à des virus,...)</p>
+                </div>
+        </div>        
+
+      <div class="speciality-content content-2">
+            <div class="speciality-card">
+                <img src="<?=asset('assets/icons/ultrasonique.png');?>" alt="écho">
+                  <h5>Gynécologie</h5>
+                    <p>(échographie, suivi des <br> chaleurs, insémination…)</p>
+            </div>
+       
+              <div class="speciality-card">
+                      <img src="<?=asset('assets/icons/chirurgie.png');?>" alt="tools">
+                        <h5>Chirurgie</h5>
+                          <p>(castration, plaies, <br> fractures, coliques…)</p>
+                  </div>
+              
+                  <div class="speciality-card">
+                          <img src="<?=asset('assets/icons/dent.png');?>" alt="tooth">
+                            <h5>Dentisterie</h5>
+                            <p>(visite de contrôle, extraction...) </p>
+                      </div>
+                  </div>
+        <div class="speciality-content content-3">
+            <div class="speciality-card">
+                <img src="<?=asset('assets/icons/oeil.png');?>" alt="eye">
+                  <h5>Ophtalmologie</h5>
+                  <p>(fond d'oeil, échographie oculaire...)</p>
+            </div>
+
+              <div class="speciality-card">
+                      <img src="<?=asset('assets/icons/medecine.png');?>" alt="medecine">
+                        <h5>Médicine alternative</h5>
+                          <p>(acupuncture, ostéopathie, <br>phytothérapie, physiothérapie)</p>
+                  </div>
+              
+                  <div class="speciality-card">
+                          <img src="<?=asset('assets/icons/regime.png');?>" alt="nutrition">
+                            <h5>Nutrition</h5>
+                            <p>(diagnostique nutritionnel, plan de rationnement...)</p>
+                      </div>
+          </div>
+  </div>
+</div>
+
+<div data-aos="fade-up" data-aos-duration="1000">
+<div class="search">
+  <div class="search-left">
+  <img src="<?=asset('assets/icons/loupe.png');?>" alt="search" class="icons">
+     <h3>Recherchez</h3>
+      <h4>Trouver un vétérinaire prés de chez vous</h4>
+        <p>Un grand choix de vétérinaires partout <br>
+          en France pour soigner vos chevaux</p>
+  </div>
+  <div class="search-right">
+     <img src="<?=asset('assets/doc.png');?>" alt="doctor" class="img">
+  </div>   
+</div>
+</div>
+
+<div class="choice" data-aos="fade-up" data-aos-duration="1000">
+ <div class="choice-left">
+    <img src="<?=asset('assets/calendar.png');?>" alt="calendar" class="img">
+  </div> 
+    <div class="choice-right">
+    <img src="<?=asset('assets/icons/calendar.png');?>" alt="calendar" class="icons">
+        <h3>Choisissez</h3>
+          <h4>La date et l'heure de votre rendez-vous</h4>
+              <p>Prenez rendez-vous en ligne avec le vétérinaire de votre <br>
+              choix en fonction du type de prestation et de votre localisation.</p>
+    </div>
+</div>
+
+<div class="visit" data-aos="fade-up" data-aos-duration="1000">
+  <div class="visit-left">
+  <img src="<?=asset('assets/icons/validate.png');?>" alt="validate" class="icons">
+    <h3>Validez</h3>
+      <h4>Après la validation du rendez-vous</h4>
+        <p>Vous recevez un mail de confirmation <br>
+          Et patientez jusqu'au jour J la visite de votre vétérinaire</p>
+  </div> 
+      <div class="visit-right">
+        <img src="<?=asset('assets/house.png');?>" alt="house" class="img">
+      </div>
+</div>
+
+<script>
+
+</script>

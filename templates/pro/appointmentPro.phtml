@@ -1,0 +1,31 @@
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Client</th>
+            <th>Animal</th>
+            <th>Motif</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($appointment->getAppointmentsByProId($professionnal->getProfessionnal_id()) as $appointment): ?>
+            <tr>
+                <td><?= $appointment->getDate()?></td>
+                <td><?= $appointment->getHours()?></td>
+                <td><?= $appointment->getPatient_id()?></td>
+                <td><?= $appointment->getAddress()?></td>
+                <td><?= $appointment->getPostalCode() ?></td>
+                <td><?= $appointment->getMessage() ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<label for="status">Statut:</label>
+        <select name="status" id="status">
+            <?php foreach ($status as $statu) : ?>
+                <option value="<?= $statu['id']; ?>"><?= $statu['status']; ?></option>
+            <?php endforeach; ?>
+        </select>
+

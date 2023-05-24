@@ -1,0 +1,108 @@
+<?php
+    // Récupération du message d'erreur depuis la variable de session
+    if (isset($_SESSION['error_message'])) {
+        echo "<p style='color:red'>" . $_SESSION['error_message'] . "</p>";
+        // Suppression du message d'erreur de la variable de session
+        unset($_SESSION['error_message']);
+    }
+    ?>
+
+<div class="create-account">
+<img src="<?=asset('assets/signup.png');?>" alt="">
+<div class="d-flex justify-content-center align-items-center border p-4 my-5">
+  <form action="<?=constructUrl('signupPatient');?>" method="post" class="form-patient">
+  <form action="<?=constructUrl('signupPro');?>" method="post" class="form-patient">
+    <h1 class="text-center">Création de compte vétérinaire</h1>
+    <div class="form-group">
+      <label for="lastname">Nom :</label>
+      <input type="text" id="lastname" name="lastname" value="<?=$lastname;?>" class="form-control">
+      <?php if(isset($errors['lastname'])):?>
+        <p class="error"><?=$errors['lastname'];?></p>
+      <?php endif; ?>
+    </div>
+    <div class="form-group">
+      <label for="firstname">Prénom :</label>
+      <input type="text" id="firstname" name="firstname" value="<?=$firstname;?>" class="form-control">
+      <?php if(isset($errors['firstname'])):?>
+        <p class="error"><?=$errors['firstname'];?></p>
+      <?php endif; ?>
+    </div>
+    <div class="form-group">
+      <label for="email">Email :</label>
+      <input type="text" id="email" name="email" value="<?=$email;?>" class="form-control">
+      <?php if(isset($errors['email'])):?>
+        <p class="error"><?=$errors['email'];?></p>
+      <?php endif; ?>
+    </div>
+    <div class="form-group">
+      <label for="postalCode">Code postal :</label>
+      <input type="text" id="code" name="postalCode" value="<?=$postalCode;?>" class="form-control">
+      <?php if(isset($errors['postalCode'])):?>
+        <p class="error"><?=$errors['postalCode'];?></p>
+      <?php endif; ?>
+    </div>
+    <div class="form-group">
+      <label for="city">Ville :</label>
+      <input type="text" id="ville" name="city" value="<?=$city;?>" class="form-control">
+      <?php if(isset($errors['city'])):?>
+        <p class="error"><?=$errors['city'];?></p>
+      <?php endif; ?>
+    </div>
+    <div class="vicopo-wrapper">
+      <ul class="vicopo-dropdown" data-vicopo="#ville, #code" data-vicopo-click='{"#code": "code", "#ville": "ville"}'>
+        <li>
+          <strong data-vicopo-code-postal></strong>
+          <span data-vicopo-ville></span>
+        </li>
+      </ul>
+    </div>
+    <div class="form-group">
+      <label for="address">Adresse :</label>
+      <input type="address" id="address" name="address" value="<?=$address;?>" class="form-control">
+      <?php if(isset($errors['address'])):?>
+        <p class="error"><?=$errors['address'];?></p>
+      <?php endif; ?>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Téléphone :</label>
+      <input type="tel" id="phoneNumber" name="phoneNumber" value="<?=$phoneNumber;?>" class="form-control">
+      <?php if(isset($errors['phoneNumber'])):?>
+        <p class="error"><?=$errors['phoneNumber'];?></p>
+      <?php endif; ?>
+    </div>
+    <div class="form-group">
+      <label for="speciality">Spécialités :</label>
+      <select id="speciality" name="speciality" class="form-control mx-2">
+        <option value="" disabled selected hidden>Choisir une spécialité</option>
+        <?php
+        foreach($specialities as $speciality){
+          echo '<option value="' . $speciality['id'] . '">' . $speciality['name'] . '</option>';
+        }
+        ?>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="veterinaryNumber">Numéro ordinal :</label>
+      <input type="text" id="veterinaryNumber" name="veterinaryNumber" value="<?=$veterinaryNumber;?>" class="form-control">
+      <?php if(isset($errors['veterinaryNumber'])):?>
+        <p class="error"><?=$errors['veterinaryNumber'];?></p>
+      <?php endif; ?>
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe :</label>
+      <input type="password" id="password" name="password" class="form-control">
+      <?php if(isset($errors['password'])):?>
+        <p class="error"><?=$errors['password'];?></p>
+      <?php endif; ?>
+    </div>
+    <div class="form-group">
+      <label for="password-confirm">Confirmation :</label>
+      <input type="password" id="password-confirm" name="password-confirm" class="form-control">
+      <?php if(isset($errors['password-confirm'])):?>
+        <p class="error"><?=$errors['password-confirm'];?></p>
+      <?php endif; ?>
+    </div>
+    <input type="submit" value="Créer compte" class="btn btn-primary">
+  </form>
+</div>
+</div>

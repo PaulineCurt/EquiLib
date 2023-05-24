@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+<div class="container">
+<div class="row">
+		<div class="col-12">
+			<!-- Page title -->
+			<div class="my-5">
+				<h3>Mon profil</h3>
+				<hr>
+			</div>
+			<!-- Form START -->
+			<form class="file-upload">
+				<div class="row mb-5 gx-5">
+					<!-- Contact detail -->
+					<div class="col-xxl-8 mb-5 mb-xxl-0">
+						<div class="bg-secondary-soft px-4 py-5 rounded">
+							<div class="row g-3">
+								<h4 class="mb-4 mt-0">Mes infos</h4>
+								<!-- First Name -->
+								<div class="col-md-6">
+                                    <label class="form-label">Nom</label>
+                                    <div class="form-control"><?=$pro->getLastname()?></div>
+								</div>
+								<!-- Last name -->
+								<div class="col-md-6">
+                                    <label class="form-label">Prénom</label>
+                                    <div class="form-control"><?=$pro->getFirstname()?></div>
+								</div>
+								<!-- Veterinary Number -->
+								<div class="col-md-6">
+									<label class="form-label">Numéro ordinal</label>
+									<div class="form-control"> <?=$pro->getVeterinaryNumber()?></div>
+								</div>
+								<!-- Phone number -->
+								<div class="col-md-6">
+									<label class="form-label">Téléphone</label>
+									<div class="form-control"><?=$pro->getPhoneNumber()?></div>
+								</div>
+								<!-- City -->
+								<div class="col-md-6">
+									<label class="form-label">Ville</label>
+									<div class="form-control"><?=$pro->getCity()?></div>
+								</div>
+								<!-- Address -->
+                                <div class="col-md-6">
+									<label class="form-label">Adresse</label>
+									<div class="form-control"><?=$pro->getAddress()?></div>
+								</div>
+                            	<!-- Email -->
+								<div class="col-md-6">
+									<label for="inputEmail4" class="form-label">Email</label>
+									<div class="form-control"><?=$pro->getEmail()?></div>
+								</div>
+							</div>
+						</div>
+					</div>
+    

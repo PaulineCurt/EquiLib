@@ -1,0 +1,35 @@
+<h1>Liste des vétérinaires</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Email</th>
+      <th scope="col">Code Postal</th>
+      <th scope="col">Ville</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Numéro de téléphone</th>
+      <th scope="col">Numéro ordonnal</th>
+      <th scope="col">Specialité</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($pros as $pros): ?>
+      <tr>
+        <th><?=$pros->getId_professionnal()?></th>
+        <td><?=$pros->getFirstname()?></td>
+        <td><?=$pros->getLastname()?></td>
+        <td><?=$pros->getEmail()?></td>
+        <td><?=$pros->getPostalCode()?></td>
+        <td><?=$pros->getCity()?></td>
+        <td><?=$pros->getAddress()?></td>
+        <td><?=$pros->getPhoneNumber()?></td>
+        <td><?=$pros->getVeterinaryNumber()?></td>
+        <td><?=$pros->getSpeciality()->getName()?></td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>

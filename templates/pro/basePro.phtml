@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?=asset('css/indexPro.css');?>" />
+    <link rel="stylesheet" href="<?=asset('css/style.css');?>" />
+    <link rel="stylesheet" href="<?=asset('css/index.css');?>" />
+    <link rel="stylesheet" href="<?=asset('css/signup.css');?>" />
+    <link rel="stylesheet" href="<?=asset('css/base.css');?>" />
+</head>
+<body>
+    <header>
+    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
+        <img src="<?=asset('assets/logo-equilib.png');?>" alt="logo" width="50px">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="<?=constructUrl('homeProfessionnal');?>">Accueil Vétérinaire</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                <?php if(!(new App\Services\ProfessionnalSession)->getProfessionnal()): ?>
+                  <a class="nav-link" aria-current="page" href="<?=constructUrl('signupPro');?>">Créer compte</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?=constructUrl('loginPro');?>">Connexion</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?=constructUrl('home');?>">Espace patient</a>
+                </li>
+                <?php else: ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?=constructUrl('profilePro');?>"> 
+                    <?php if((new App\Services\ProfessionnalSession)->getProfessionnal()): ?>
+                    <?=(new App\Services\ProfessionnalSession)->getProfessionnal()->getFirstname()?> 
+                    <?=(new App\Services\ProfessionnalSession)->getProfessionnal()->getLastname()?> 
+                  <?php endif ?></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?=constructUrl('appointmentPro');?>">Mes rendez-vous</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Mes documents</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?=constructUrl('logoutPro');?>">Déconnexion</a>
+                </li>
+                <?php endif; ?>
+              </ul>
+            </div>
+          </div>
+</nav>
+    </header>
+    <main>
+    <?php if (isset($flashMessage) && $flashMessage):?>
+        <p class="succes"><?=$flashMessage;?> 
+        <?php endif;?>
+
+        <!-- défini quel template il doit afficher -->
+        <?php include $template . '.phtml'; ?>
+    </main>
+
+    <!--Footer -->
+<footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h1>EQUILIB</h1>
+               <img src="<?=asset('assets/logo-equilib.png');?>" alt="logo" width="100px" text-align="center">
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Accès rapide</h6>
+              <ul class="footer-links">
+                <?php if(!(new App\Services\ProfessionnalSession)->getProfessionnal()): ?>
+                    <li><a href="<?=constructUrl('loginPro');?>">Connexion</a></li>
+                    <li><a href="<?=constructUrl('signupPro');?>">Création de compte</a></li>
+                    <li><a href="<?=constructUrl('homeProfessionnal');?>">Espace vétérinaires</a></li>
+                    <?php else: ?>
+                    <li><a href="profilePatient.php">Profil</a></li>
+                    <li><a href="appointmentPatient.php">Rendez-vous</a></li>
+                    <li><a href="documents.php">Documents</a></li>
+                    <li><a href="<?=constructUrl('logoutPro');?>">Déconnexion</a></li>
+                  <?php endif; ?>
+              </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Equilib</h6>
+            <ul class="footer-links">
+              <li><a href="about.php">À propos d'Equilib</a></li>
+              <li><a href="faq.php">FAQ</a></li>
+              <li><a href="#">Témoignages</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by Curt Pauline.
+            </p>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a class="dribbble" href="#"><i class="fa fa-instagram"></i></a></li>
+              <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+            </ul>
+          </div>
+        </div>
+      </div>
+</footer>
+
+<script src="<?=asset('js/script.js');?>"></script>
+<script src="<?=asset('js/vicopo-vanilla.min.js');?>"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
+
+</body>
+</html>

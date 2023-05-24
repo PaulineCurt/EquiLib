@@ -1,0 +1,10 @@
+.fast, .rdv, .visibility {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 80px;
+  margin-top: 150px;
+}
+.fast img, .visibility img, .rdv img {
+  width: 500px;
+}

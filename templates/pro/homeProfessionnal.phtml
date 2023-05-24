@@ -1,0 +1,69 @@
+<header>
+    <div class="top">
+        <h1>Bienvenue sur Equilib 
+        <?php if((new App\Services\ProfessionnalSession)->getProfessionnal()): ?>
+        <?=(new App\Services\ProfessionnalSession)->getProfessionnal()->getFirstname()?> 
+        <?=(new App\Services\ProfessionnalSession)->getProfessionnal()->getLastname()?> 
+      <?php endif ?></h1>
+             <p>Gérer votre planning </p>
+    </div>
+</header>
+
+<div class="presentation">
+  <div class="card">
+    <div class="content 1">
+      <img src="<?=asset('assets/icons/doctor.png');?>" alt="doctor">
+      <h4>Trouvez un vétérinaire <br> pour votre cheval</h4>
+    </div>
+    <div class="content 2">
+      <img src="<?=asset('assets/icons/rendez-vous.png');?>" alt="appointment">
+      <h4>Prenez un rendez-vous</h4>
+    </div>
+    <div class="content 3">
+      <img src="<?=asset('assets/icons/stopwatch.png');?>" alt="stopwatch">
+      <h4>Attendre le vétérinaire <br> chez vous</h4>
+    </div>
+  </div>
+</div>
+
+  <div class="fast" data-aos="fade-up" data-aos-duration="1000">
+    <div class="fast-left">
+    <img src="<?=asset('assets/icons/phone.png');?>" alt="phone" class="icons">
+      <h3>Rapidité</h3>
+        <h4>Gagnez en temps de secrétariat</h4>
+          <p>Grâce à notre solution de prise de rendez-vous en ligne, <br>
+          plus de 50% des rendez-vous sont pris en dehors des heures d’ouverture des cliniques.</p>
+    </div>
+        <div class="fast-right">
+            <img src="<?=asset('assets/time.png');?>" alt="time">
+        </div>  
+  </div>
+
+  <div class="rdv" data-aos="fade-up" data-aos-duration="1000">
+          <div class="rdv-left">
+          <img src="<?=asset('assets/phone.png');?>" alt="phone">
+      </div>  
+          <div class="rdv-right">
+          <img src="<?=asset('assets/icons/email.png');?>" alt="email" class="icons">
+            <h3>Rappels</h3>
+              <h4>Réduisez vos rendez-vous non honorés</h4>
+                <p>A chaque rendez-vous pris via Equilib, <br>
+                un SMS et un email de confirmation sont envoyés au client. <br>
+                Un SMS de rappel est envoyé 24h avant le rendez-vous..</p>
+          </div>    
+  </div>
+
+
+  <div class="visibility" data-aos="fade-up" data-aos-duration="1000">
+    <div class="visibility-left">
+    <img src="<?=asset('assets/icons/oeil1.png');?>" alt="eye" class="icons">
+      <h3>Visibilité</h3>
+        <h4>Faites-vous connaitre et <br>
+          Gagnez de nouveaux clients</h4>
+          <p>Equilib permets à tous ceux qui cherchent un vétérinaire, <br>
+            de vous trouver plus facilement et devenir vos nouveaux clients.</p>
+    </div>
+      <div class="visibility-right">
+          <img src="<?=asset('assets/map.png');?>" alt="map">
+      </div>   
+  </div>

@@ -1,0 +1,148 @@
+<div class="container">
+	<div class="row">
+			<div class="col-12">
+				<div class="my-5">
+					<h3>Mon profil</h3>
+					<hr>
+				</div>
+				<form class='profile'>
+					<div class="row mb-5 gx-5">
+						<div class="col-xxl-11 mb-3 mb-xxl-0">
+							<div class="bg-secondary-soft px-4 py-5 rounded">
+								<div class="row g-3">
+									<h4 class="mb-4 mt-0">Mes infos</h4>
+                                    
+									<div class="col-md-6">
+										<label class="form-label">Nom</label>
+											<div class="form-control"><?=$patient->getLastname()?></div>
+									</div>
+									<div class="col-md-6">
+										<label class="form-label">Prénom</label>
+											<div class="form-control"><?=$patient->getFirstname()?></div>
+									</div>
+
+									<div class="col-md-6">
+										<label class="form-label">Téléphone</label>
+											<div class="form-control"><?=$patient->getPhoneNumber()?></div>
+									</div>
+
+									<div class="col-md-6">
+										<label class="form-label">Adresse</label>
+											<div class="form-control"><?=$patient->getAddress()?></div>
+									</div>
+								
+									<div class="col-md-6">
+										<label for="inputEmail4" class="form-label">Email</label>
+											<div class="form-control"><?=$patient->getEmail()?></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                        <img src="<?=asset('assets/profile.png');?>" alt="profile">
+				</form>
+		</div>
+	</div>
+</div>
+
+
+<!-- HORSES ARRAY -->
+<div class="container">
+    <h2>Mes chevaux</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Race</th>
+                <th>Âge</th>
+                <th>Photo</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($horses as $horse): ?>
+                <tr>
+                    <td><?=$horse->getName(); ?></td>
+                    <td><?=$horse->getBreed_name(); ?></td>
+                    <td><?=$horse->getAge(); ?></td>
+                    <td>
+                    <?php if($horse->getImage()):?>    
+                    <img src="<?=asset('images/' . $horse->getImage());?>" alt="Image du cheval" style="width: 100px;">
+                <?php endif?>
+                </td>
+                    <td><?=$horse->getDescription(); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center mb-3">
+        <button type="button" class="btn btn-primary <?= isset($errors) ? "visible" : "" ?>" data-toggle="modal" data-target="#addHorseModal"  id="buttonAddHorse">
+            Ajouter un cheval
+        </button>
+    </div>
+</div>
+
+
+<!-- POP-UP FORM ADD HORSE -->
+<div class="modal fade" id="addHorseModal" tabindex="-1" role="dialog" aria-labelledby="addHorseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addHorseModalLabel">Ajouter un cheval</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" enctype="multipart/form-data"action="<?= constructUrl('profilePatient'); ?>">
+				<div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="name">Nom du cheval :</label>
+                <input type="text" class="form-control" id="name" name="name" >
+                <?php if (isset($errors['name'])): ?>
+                    <p class="text-danger"><?=$errors['name']?></p>
+                    <?php endif?>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="breed">Race du cheval :</label>
+                <select class="form-control" id="breed" name="breed">
+                <option value="">Selectionner la race</option>
+                    <?php foreach ($breeds as $breed): ?>
+                        <option value="<?php echo $breed['id']; ?>"><?php echo $breed['breed_name']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <?php if (isset($errors['breed'])): ?>
+                    <p class="text-danger"><?=$errors['breed']?></p>
+                    <?php endif?>
+            </div>
+        </div>
+            <div class="col-md-6 mb-3">
+                <label for="age">Âge du cheval :</label>
+                <input type="number" class="form-control" id="age" name="age">
+                <?php if (isset($errors['age'])): ?>
+                    <p class="text-danger"><?=$errors['age']?></p>
+                    <?php endif?>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="description">Description du cheval :</label>
+                <textarea class="form-control" id="description" name="description"></textarea>
+            </div>
+    <!-- UPLOAD IMAGE-->
+            <div class="col-md-6 mb-3">
+             <label for="image">Image :</label>
+                <input type="file" id="image" name="image">
+            </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" id="addHorseButton" class="btn btn-primary" value="Ajouter le cheval">
+            </div>
+        </div>
+    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

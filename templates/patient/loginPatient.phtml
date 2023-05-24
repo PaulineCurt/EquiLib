@@ -1,0 +1,44 @@
+<?php if (isset($flashMessage) && $flashMessage):?>
+        <p class="alert alert-danger"><?=$flashMessage;?> 
+        <?php endif;?>
+        
+<section class="vh-80 " style="margin-top: 150px; margin-bottom: 150px;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="<?=asset('assets/login.png');?>" alt="password img" width="500px">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form class="form-horizontal" action="<?=constructUrl('loginPatient');?>" method="POST">
+          <!-- Error login -->
+          <?php if($error != null) : ?>
+            <p style="color:red"><?=$error;?></p>
+            <?php endif; ?>
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+          <label class="col-sm-2 control-label" for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="">
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+          <label class="col-sm-3 control-label" for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password">
+          </div>
+
+          <div class="d-flex justify-content-around align-items-center mb-4">
+            <!-- Checkbox -->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+              <label class="form-check-label" for="form1Example3">Se souvenir de moi </label>
+            </div>
+            <a href="#!">Mot de passe oublié?</a>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Se connecter</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

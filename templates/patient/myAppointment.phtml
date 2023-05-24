@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rendez-vous du patient</title>
+</head>
+<body>
+    <h1>Rendez-vous du patient</h1>
+
+    <?php
+    // Vérifier s'il y a des rendez-vous
+    if (!empty($appointments)) {
+        echo '<ul>';
+        foreach ($appointments as $appointment) {
+            echo '<li>';
+            echo 'Date : ' . $appointment['date'] . '<br>';
+            echo 'Heure : ' . $appointment['hours'] . '<br>';
+            echo 'Message : ' . $appointment['message'] . '<br>';
+            // Ajouter d'autres informations si nécessaire
+            echo '</li>';
+        }
+        echo '</ul>';
+    } else {
+        echo 'Aucun rendez-vous trouvé.';
+    }
+    ?>
+</body>
+</html>

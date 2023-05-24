@@ -1,0 +1,7 @@
+<div class="top">
+  <div class="top-content">
+    <h1>Equilib
+      <?php if((new App\Services\AdminSession)->getAdmin()): ?>
+        <p>Bienvenue Admin</p>
+      <?php endif ?>
+    </h1>

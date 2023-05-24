@@ -1,0 +1,30 @@
+.create-account {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.create-account img {
+  width: 40%;
+  height: 50%;
+  align-self: center;
+}
+
+.appointment {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.appointment img {
+  width: 40%;
+  height: 50%;
+  align-self: center;
+}
+
+.profile {
+  display: flex;
+}
+.profile img {
+  width: 40%;
+  height: 50%;
+  align-self: center;
+}
