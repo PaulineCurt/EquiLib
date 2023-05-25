@@ -10,3 +10,6 @@ const TEMPLATE_DIR = PROJECT_DIR . '/templates';
 
 // Base URL from the root of the web server
 const BASE_URL = '/EquiVet/public'; 
+
+// UPLOAD IMAGE
+const MAX_UPLOAD_SIZE = 1048576;
