@@ -27,12 +27,12 @@ class AppointmentController {
         $options = '';
         for ($hour = $startHour; $hour <= $endHour; $hour++) {
             for ($minute = 0; $minute < 60; $minute += $interval) {
+                //"%02d:%02d" >indique un entier (d) de deux caractères (2) avec un zéro de remplissage (0) si nécessaire.
                 $time = sprintf("%02d:%02d", $hour, $minute);
                 $selected = ($time == $selectedTime) ? 'selected' : '';
                 $options .= "<option value='$time' $selected>$time</option>";
             }
         }
-        
         return $options;
     }
 
