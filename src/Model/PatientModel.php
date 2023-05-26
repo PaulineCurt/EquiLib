@@ -25,6 +25,19 @@ class PatientModel extends AbstractModel {
         return $this->db->insert($sql, $values);
     }
     
+    // Vérifie si l'email existe dans la BDD
+    public function isEmailExists(string $email)
+{
+    $sql = 'SELECT COUNT(*) AS count
+            FROM patient
+            WHERE email = ?';
+
+    $result = $this->db->getOneResult($sql, [$email]);
+
+    return $result['count'] > 0;
+}
+
+    
     public function getDataPatient()
     {
         $datas = [];

@@ -61,7 +61,11 @@ class PatientController {
 
             // Si il n'y a pas d'erreur... 
             if(empty($errors)) {
-
+                
+                 // Vérifier si l'e-mail existe déjà
+            if ($this->patientModel->isEmailExists($email)) {
+                $errors['email'] = 'Cette adresse email est déjà associée à un compte.';
+            } else {
                 $hash = password_hash($password, PASSWORD_DEFAULT);
 
                 $patient = new Patient([
@@ -85,6 +89,7 @@ class PatientController {
                 header('Location: ' . constructUrl('home'));
                 exit;
             }
+        }
 
         }
 
